@@ -11,12 +11,12 @@
       padding: 15px;
     }
   </style>
-  <script src="../../webcomponentsjs/webcomponents.js"></script>
-  <link rel="import" href="../../paper-input/paper-input.html">
-  <link rel="import" href="../../iron-form/iron-form.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
-  <link rel="import" href="../../paper-card/paper-card.html">
-  <link rel="import" href="../re-captcha.html">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents.js"></script>
+  <script type="module" src="../../../@polymer/paper-input/paper-input.js"></script>
+  <script type="module" src="../../../@polymer/iron-form/iron-form.js"></script>
+  <script type="module" src="../../../@polymer/paper-button/paper-button.js"></script>
+  <script type="module" src="../../../@polymer/paper-card/paper-card.js"></script>
+  <script type="module" src="../re-captcha.js"></script>
 
 </head>
 <body>
@@ -37,19 +37,22 @@
   </paper-card>
 </template>
 
-<script>
-  var t = document.querySelector('#t');
-  // The dom-change event signifies when the template has stamped its DOM.
-  t.addEventListener('dom-change', function() {
-    // auto-binding template is ready.
-    var rec = document.querySelector('re-captcha');
-    var button= document.querySelector("#submit");
-    rec.addEventListener('captcha-response', function(e){
-      button.disabled=false;
-    });
+<script type="module">
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/iron-form/iron-form.js';
+import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-card/paper-card.js';
+import '../re-captcha.js';
+var t = document.querySelector('#t');
+// The dom-change event signifies when the template has stamped its DOM.
+t.addEventListener('dom-change', function() {
+  // auto-binding template is ready.
+  var rec = document.querySelector('re-captcha');
+  var button= document.querySelector("#submit");
+  rec.addEventListener('captcha-response', function(e){
+    button.disabled=false;
   });
-
-
+});
 </script>
 </body>
 </html>
