@@ -7,22 +7,23 @@
     <meta charset="UTF-8">
 
     <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
-    <script src="../bower_components/web-component-tester/browser.js"></script>
-    <script src="TestUtils.js"></script>
-    <link rel="import" href="../re-captcha.html">
+    <script src="../../../wct-browser-legacy/browser.js"></script>
+    <script src="./TestUtils.js"></script>
+    <script type="module" src="../re-captcha.js"></script>
 
   </head>
 
   <body>
-  <script>
-    // Load and run all tests (.html, .js) as one suite:
-    WCT.loadSuites([
-      're-captcha-basic.html',
-      're-captcha-loading.html',
-      're-captcha-reloading.html',
-      're-captcha-render.html'
-    ]);
-  </script>
+  <script type="module">
+import '../re-captcha.js';
+// Load and run all tests (.html, .js) as one suite:
+WCT.loadSuites([
+  're-captcha-basic.html',
+  're-captcha-loading.html',
+  're-captcha-reloading.html',
+  're-captcha-render.html'
+]);
+</script>
 
   </body>
 

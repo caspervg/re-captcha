@@ -12,14 +12,14 @@
       padding: 15px;
     }
   </style>
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../paper-input/paper-input.html">
-  <link rel="import" href="../../iron-form/iron-form.html">
-  <link rel="import" href="../../paper-card/paper-card.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module" src="../../../@polymer/paper-input/paper-input.js"></script>
+  <script type="module" src="../../../@polymer/iron-form/iron-form.js"></script>
+  <script type="module" src="../../../@polymer/paper-card/paper-card.js"></script>
+  <script type="module" src="../../../@polymer/paper-button/paper-button.js"></script>
   <link rel="import" href="../../i18n-msg/i18n-msg.html">
 
-  <link rel="import" href="../re-captcha.html">
+  <script type="module" src="../re-captcha.js"></script>
 
 </head>
 <body>
@@ -42,40 +42,45 @@
     </div>
   </paper-card>
 
-  <script type="text/javascript">
-    var selector = document.querySelector('#selector');
-    var input = document.querySelector('#input');
-    var i18 = document.querySelector('#i18');
-    var panel = document.querySelector('#panel');
-    var inputLName = document.querySelector('#lastname');
-    var inputFName = document.querySelector('#firstname');
-    var captcha = document.querySelector('#captcha');
+  <script type="module">
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/iron-form/iron-form.js';
+import '@polymer/paper-card/paper-card.js';
+import '@polymer/paper-button/paper-button.js';
+import '../re-captcha.js';
+var selector = document.querySelector('#selector');
+var input = document.querySelector('#input');
+var i18 = document.querySelector('#i18');
+var panel = document.querySelector('#panel');
+var inputLName = document.querySelector('#lastname');
+var inputFName = document.querySelector('#firstname');
+var captcha = document.querySelector('#captcha');
 
-    // Event is only needed when running under the HTMLImports polyfill.
-    document.addEventListener('HTMLImportsLoaded', function() {
-      I18nMsg.lang = selector.value || document.documentElement.lang || 'en';
-      Platform.performMicrotaskCheckpoint();
-    });
+// Event is only needed when running under the HTMLImports polyfill.
+document.addEventListener('HTMLImportsLoaded', function() {
+  I18nMsg.lang = selector.value || document.documentElement.lang || 'en';
+  Platform.performMicrotaskCheckpoint();
+});
 
-    selector.addEventListener('change', function() {
-      document.documentElement.lang = this.value;
-      I18nMsg.lang = this.value;
+selector.addEventListener('change', function() {
+  document.documentElement.lang = this.value;
+  I18nMsg.lang = this.value;
 
-      captcha.lang=this.value;
-      captcha.reload();
-      Platform.performMicrotaskCheckpoint();
-    });
+  captcha.lang=this.value;
+  captcha.reload();
+  Platform.performMicrotaskCheckpoint();
+});
 
-    document.addEventListener('i18n-language-ready', function(e) {
+document.addEventListener('i18n-language-ready', function(e) {
 
-      var title = i18.getMsg('title');
-      var firstName = i18.getMsg('firstname');
-      var lastName = i18.getMsg('lastname');
+  var title = i18.getMsg('title');
+  var firstName = i18.getMsg('firstname');
+  var lastName = i18.getMsg('lastname');
 
-      panel.heading=title;
-      inputFName.label=firstName;
-      inputLName.label=lastName;
-    });
-  </script>
+  panel.heading=title;
+  inputFName.label=firstName;
+  inputLName.label=lastName;
+});
+</script>
 </body>
 </html>
